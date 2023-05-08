@@ -1,0 +1,80 @@
+$primaryColor: #2b2b2b;
+$secondaryColor: #1b1b1b;
+$buttonPrimaryColor: #3b3b3b;
+$buttonSecondaryColor: #3b3b3f;
+
+:root {
+    background: linear-gradient(to bottom, #2f3f4f, #000c18) no-repeat;
+    background-attachment: fixed;
+    font-family: 'Noto Sans';
+    font-size: 16px;
+}
+
+body::-webkit-scrollbar {
+    background-color: $primaryColor;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: $secondaryColor;
+    border-radius: 15px;
+}
+body::-webkit-scrollbar-track {
+    background-color: #2b2b2b;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+#title {
+    font-size: 32px;
+    text-align: center;
+    color: #f5f5f5;
+    text-shadow: 3px 3px 15px #000;
+    text-decoration: underline;
+}
+
+#displayLabel {
+    background-color: $secondaryColor;
+    margin-bottom: 15px;
+    border: 2px outset $primaryColor;
+    width: 27rem;
+    height: 5rem;
+    text-align: right;
+    font-size: 32px;
+    color: #f5f5ff;
+}
+
+.buttons {
+    padding: 15px;
+    border: 3px inset $primaryColor;
+    border-radius: 5px;
+    background-color: $secondaryColor;
+
+    .buttonSet {
+        margin-bottom: 2px;
+
+        button {
+            background-color: $buttonPrimaryColor;
+            width: 6rem;
+            height: 5rem;
+            font-family:'Times New Roman', Times, serif;
+            font-size: 32px;
+            color: #f5f5f5;
+            text-shadow: 5px 3px 5px $secondaryColor;
+            border-radius: 3px;
+    
+            &:hover {
+                background-color: $buttonSecondaryColor;
+                font-size: 34px;
+                color: #fcfcfc;
+                text-shadow: 10px 5px 10px $primaryColor;
+            }
+            &:active {
+                background-color: $primaryColor;
+            }
+        }
+    }
+}
