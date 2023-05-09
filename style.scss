@@ -37,8 +37,12 @@ body::-webkit-scrollbar-track {
 }
 
 #displayLabel {
+    display: block;
     background-color: $secondaryColor;
     margin-bottom: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     border: 2px outset $primaryColor;
     width: 27rem;
     height: 5rem;
