@@ -1,70 +1,44 @@
 let calcDisplay = "";
-let numberButtons = document.getElementsByClassName("numButton");
+let calcButtons = document.getElementsByClassName("calcButton");
+let buttons = {};
 let parentheses_open = false;
 
-for (let i = numberButtons.length; i > 0; i--) {
-    numberButtons[i - 1].onclick = () => {
-        calcDisplay += numberButtons[i - 1].innerHTML;
+
+for (let button in calcButtons) {
+    let symbol = calcButtons[button].innerHTML;
+    buttons[symbol] = calcButtons[button];
+}
+
+for (let symbol in buttons) {
+    buttons[symbol].onclick = () => {
+        switch (symbol) {
+            case "C":
+                calcDisplay = "";
+                break;
+            case "()":
+                if (!parentheses_open) {
+                    calcDisplay += "(";
+                    parentheses_open = true;
+                } else {
+                    calcDisplay += ")";
+                    parentheses_open = false;
+                }    
+                break;
+            case "←":
+                calcDisplay = calcDisplay.slice(0, calcDisplay.length - 1);
+                break;
+            case "=":
+                try {
+                    calcDisplay = eval(calcDisplay);
+                    break;
+                } catch {
+                    calcDisplay = "Invalid Input";
+                }
+                break;
+            default:
+                calcDisplay += buttons[symbol].innerHTML;
+                break;
+        }
         document.getElementById("displayLabel").innerHTML = calcDisplay;
     }
-}
-
-document.getElementById("buttonC").onclick = () => {
-    calcDisplay = "";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("calculate").onclick = () => {
-    try {
-        calcDisplay = eval(calcDisplay);
-    } catch {
-        calcDisplay = "Invalid Input";
-    }
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("back").onclick = () => {
-    calcDisplay = calcDisplay.slice(0, calcDisplay.length - 1);
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("dot").onclick = () => {
-    calcDisplay += ".";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("plus").onclick = () => {
-    calcDisplay += "+";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("subtract").onclick = () => {
-    calcDisplay += "-";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("multiply").onclick = () => {
-    calcDisplay += "*";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("divide").onclick = () => {
-    calcDisplay += "/";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("modulo").onclick = () => {
-    calcDisplay += "%";
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
-}
-
-document.getElementById("parentheses").onclick = () => {
-    if (!parentheses_open) {
-        calcDisplay += "(";
-        parentheses_open = true;
-    } else {
-        calcDisplay += ")"
-        parentheses_open = false;
-    }
-    document.getElementById("displayLabel").innerHTML = calcDisplay;
 }
