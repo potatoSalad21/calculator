@@ -3,12 +3,12 @@ let buttons = {};
 let parentheses_open = false;
 const calcButtons = document.getElementsByClassName("calcButton");
 
-for (let button in calcButtons) {
-    let symbol = calcButtons[button].innerHTML;
-    buttons[symbol] = calcButtons[button];
+for (const button of calcButtons) {
+    let symbol = button.innerHTML;
+    buttons[symbol] = button;
 }
 
-for (let symbol in buttons) {
+for (const symbol in buttons) {
     buttons[symbol].onclick = () => {
         switch (symbol) {
             case "C":
